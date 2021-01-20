@@ -62,6 +62,19 @@ function addPagination(list) {
    });
 }
 
+function appendSearch() {
+   const header = document.querySelector(".header");
+
+   const searchBar = `
+      <label for="search" class="student-search">
+         <input id="search" placeholder="Search by name...">
+         <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+      </label>
+   `
+
+   header.insertAdjacentHTML("beforeend", searchBar)
+}
+
 showPage(data, 1);
 addPagination(data);
 appendSearch();
