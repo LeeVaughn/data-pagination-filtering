@@ -62,7 +62,7 @@ function addPagination(list) {
    });
 }
 
-function appendSearch() {
+function addSearchBar() {
    const header = document.querySelector(".header");
 
    const searchBar = `
@@ -77,16 +77,16 @@ function appendSearch() {
 
 showPage(data, 1);
 addPagination(data);
-appendSearch();
+addSearchBar();
 
 document.getElementsByTagName("button")[0].addEventListener("click", () => {
-   const searchInput = document.querySelector("#search").value
+   const searchValue = document.querySelector("#search").value
    const searchData = []
    
    for (let i = 0; i < data.length; i++) {
       const name = data[i].name
       
-      if (name.first.toLowerCase().includes(searchInput) || name.last.toLowerCase().includes(searchInput)) {
+      if (name.first.toLowerCase().includes(searchValue) || name.last.toLowerCase().includes(searchValue)) {
          searchData.push(data[i])
       }
    }
