@@ -81,8 +81,15 @@ appendSearch();
 
 document.getElementsByTagName("button")[0].addEventListener("click", () => {
    const searchInput = document.querySelector("#search").value
+   const searchData = []
    
    for (let i = 0; i < data.length; i++) {
-      console.log(data[i])
+      const name = data[i].name
+      
+      if (name.first.toLowerCase().includes(searchInput) || name.last.toLowerCase().includes(searchInput)) {
+         searchData.push(data[i])
+      }
    }
+   showPage(searchData, 1);
+   addPagination(searchData);
 });
