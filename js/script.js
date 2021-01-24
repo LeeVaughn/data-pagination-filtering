@@ -50,7 +50,7 @@ function addPagination(list) {
       linkList.insertAdjacentHTML("beforeend", button);
    }
 
-   document.querySelector("button").className = "active";
+   document.querySelector("li > button").className = "active";
 
    linkList.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
