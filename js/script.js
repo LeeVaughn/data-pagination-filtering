@@ -84,12 +84,24 @@ document.getElementsByTagName("button")[0].addEventListener("click", () => {
    const searchData = []
    
    for (let i = 0; i < data.length; i++) {
-      const name = data[i].name
+      const name = data[i].name;
       
       if (name.first.toLowerCase().includes(searchValue) || name.last.toLowerCase().includes(searchValue)) {
-         searchData.push(data[i])
+         searchData.push(data[i]);
       }
    }
-   showPage(searchData, 1);
-   addPagination(searchData);
+
+   if (searchData.length === 0) {
+      const studentList = document.querySelector(".student-list");
+      const message = `<p>Sorry, there are no matches for that search.</p>`
+
+      // removes student list and pagination
+      studentList.innerHTML = ""
+      document.querySelector(".link-list").innerHTML = ""
+
+      studentList.insertAdjacentHTML("beforeend", message)
+   } else {
+      showPage(searchData, 1);
+      addPagination(searchData);
+   }
 });
