@@ -6,12 +6,12 @@
  @param page - Page number to be shown
 */
 function showPage(list, page) {
-   const startIndex = (page * 9) - 9
-   const endIndex = page * 9
-   const studentList = document.querySelector(".student-list")
+   const startIndex = (page * 9) - 9;
+   const endIndex = page * 9;
+   const studentList = document.querySelector(".student-list");
 
    // removes any previously displayed students
-   studentList.innerHTML = ""
+   studentList.innerHTML = "";
 
    for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
@@ -38,14 +38,14 @@ function showPage(list, page) {
  @param list - List of students to be paginated
 */
 function addPagination(list) {
-   const numOfPages = Math.ceil(list.length / 9)
-   const linkList = document.querySelector(".link-list")
+   const numOfPages = Math.ceil(list.length / 9);
+   const linkList = document.querySelector(".link-list");
 
    // removes any previously displayed pagination
-   linkList.innerHTML = ""
+   linkList.innerHTML = "";
    
    for (let i = 1; i <= numOfPages; i++) {
-      const button = `<li><button type="button">${i}</button</li>`
+      const button = `<li><button type="button">${i}</button</li>`;
 
       linkList.insertAdjacentHTML("beforeend", button);
    }
@@ -55,9 +55,9 @@ function addPagination(list) {
    linkList.addEventListener("click", (e) => {
       if (e.target.tagName === "BUTTON") {
          document.querySelector(".active").className = "";
-         e.target.className = "active"
+         e.target.className = "active";
 
-         showPage(list, e.target.textContent)
+         showPage(list, e.target.textContent);
       }
    });
 }
@@ -70,18 +70,19 @@ function addSearchBar() {
          <input id="search" placeholder="Search by name...">
          <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
       </label>
-   `
+   `;
 
-   header.insertAdjacentHTML("beforeend", searchBar)
+   header.insertAdjacentHTML("beforeend", searchBar);
 }
 
 showPage(data, 1);
 addPagination(data);
 addSearchBar();
 
+// Click event listener for search functionality
 document.getElementsByTagName("button")[0].addEventListener("click", () => {
-   const searchValue = document.querySelector("#search").value
-   const searchData = []
+   const searchValue = document.querySelector("#search").value;
+   const searchData = [];
    
    for (let i = 0; i < data.length; i++) {
       const name = data[i].name;
@@ -93,13 +94,13 @@ document.getElementsByTagName("button")[0].addEventListener("click", () => {
 
    if (searchData.length === 0) {
       const studentList = document.querySelector(".student-list");
-      const message = `<p>Sorry, there are no matches for that search.</p>`
+      const message = `<p>Sorry, there are no matches for that search.</p>`;
 
       // removes student list and pagination
-      studentList.innerHTML = ""
-      document.querySelector(".link-list").innerHTML = ""
+      studentList.innerHTML = "";
+      document.querySelector(".link-list").innerHTML = "";
 
-      studentList.insertAdjacentHTML("beforeend", message)
+      studentList.insertAdjacentHTML("beforeend", message);
    } else {
       showPage(searchData, 1);
       addPagination(searchData);
